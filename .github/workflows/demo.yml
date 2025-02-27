@@ -31,8 +31,8 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
         env:
-          ACCESS_ID: ${{ secrets.ACCESS_ID }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
 
       - name: Terraform Output
