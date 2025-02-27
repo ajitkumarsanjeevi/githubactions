@@ -1,6 +1,6 @@
 # Provider configuration
 provider "aws" {
-  region = "ap-sotuth-1"  
+  region = "ap-south-1"  
 }
 
 # Create VPC
