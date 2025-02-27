@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -31,7 +28,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -destroy
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
