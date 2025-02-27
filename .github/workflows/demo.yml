@@ -18,7 +18,8 @@ jobs:
           terraform_version: "1.3.7"  
 
       - name: Configure AWS Credentials
-        env:
+        uses: aws-actions/configure-aws-credntials@v1
+        with:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCES_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
           AWS_DEFAULT_REGION: "ap-south-1"
