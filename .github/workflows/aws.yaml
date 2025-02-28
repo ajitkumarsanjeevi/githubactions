@@ -24,10 +24,10 @@ jobs:
           sudo apt-get install -y unzip
 
           # Download AWS CLI
-          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-
+          sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          
           # Unzip the installer
-          unzip awscliv2.zip
+          sudo unzip awscliv2.zip
 
           # Run the AWS CLI installer
           sudo ./aws/install
