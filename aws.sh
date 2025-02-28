@@ -1,4 +1,4 @@
-"#!/bin/bash
+#!/bin/bash
 
 # Variables
 POLICY_ARN="arn:aws:iam::aws:policy/AmazonS3FullAccess"
