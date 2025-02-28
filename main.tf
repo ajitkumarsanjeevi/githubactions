@@ -35,16 +35,6 @@ resource "aws_security_group" "webtraffic" {
   }
 }
 
-
-
-resource "aws_instance" "ec2" {
-  ami = "ami-00874d747dde814fa"
-  instance_type = "t2.micro"
-  key_name = "Terraform_Automation"
-  vpc_security_group_ids = [aws_security_group.webtraffic.id]
-  tags = {
-    Name = "web server"
-  }
 # Create two EC2 instances using count
 resource "aws_instance" "example" {
   count         = length(var.instance_names)
