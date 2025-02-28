@@ -2,6 +2,7 @@
 
 # Variables
 POLICY_ARN="arn:aws:iam::aws:policy/AmazonS3FullAccess"
+ROLE_NAME="EC2-S3-FullAccess-Role"
 INSTANCE_ID="i-0ffe435eb270e3cd0"
 
 # Step 1: Create IAM Role
