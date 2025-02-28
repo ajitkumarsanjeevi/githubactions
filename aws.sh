@@ -33,7 +33,7 @@ Trust-poicy =
     }
   ]
 }
-EOF
+
 
 # Step 4: Attach the IAM Role to the EC2 Instance
 echo "Attaching IAM role to EC2 instance $INSTANCE_ID..."
