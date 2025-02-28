@@ -4,7 +4,7 @@
 ROLE_NAME="EC2-S3-FullAccess-Role"
 POLICY_ARN="arn:aws:iam::aws:policy/AmazonS3FullAccess"
 INSTANCE_ID="i-0ffe435eb270e3cd0"
-INSTANCE_PROFILE_NAME="EC2-S3-FullAccess-Profile"  
+INSTANCE_PROFILE_NAME="EC2-S3-FullAccess"  
 
 # Trust policy JSON in a variable
 TRUST_POLICY='{
