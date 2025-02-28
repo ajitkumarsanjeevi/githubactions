@@ -52,6 +52,6 @@ echo "Attaching IAM instance profile to EC2 instance $INSTANCE_ID..."
 
 aws ec2 associate-iam-instance-profile \
     --instance-id $INSTANCE_ID \
-    --iam-instance-profile Name=$INSTANCE_PROFILE_NAME
+    --iam-instance-profile Arn=arn:aws:iam::585768173504:instance-profile/EC2-S3-FullAccess-Profile
 
 echo "IAM role successfully attached to EC2 instance."
