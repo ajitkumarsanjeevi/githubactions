@@ -24,9 +24,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_KEY }}
           aws-region: "ap-south-1"
         
-      - name: Terrform init
-        run: terraform init
-        
       - name: terraform plan
         run: terraform plan
         
