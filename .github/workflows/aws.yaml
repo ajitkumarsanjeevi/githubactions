@@ -17,21 +17,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.SECRET_KEY }}
           aws-region: "ap-south-1"
 
-      - name: Set up AWS CLI
-        run: |
-          # Update and install dependencies
-          sudo apt-get update -y
-          sudo apt-get install -y unzip
-
-          # Download AWS CLI
-          sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-          
-          # Unzip the installer
-          sudo unzip awscliv2.zip
-
-          # Run the AWS CLI installer
-          sudo ./aws/install
-
       - name: Verify AWS CLI installation
         run: aws --version
           
