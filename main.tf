@@ -36,7 +36,7 @@ resource "aws_security_group" "webtraffic" {
 }
 
 # Create two EC2 instances using count
-resource "aws_instance" "example" 
+resource "aws_instance" "example" {
   ami           = "ami-02ddb77f8f93ca4ca"
   key_name      = "splunk"
   instance_type = "t2.micro" 
