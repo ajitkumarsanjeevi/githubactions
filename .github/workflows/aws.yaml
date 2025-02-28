@@ -1,9 +1,10 @@
-name: aws
+name: Second Workflow
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["First Workflow"]  # This is the name of the first workflow
+    types:
+      - completed
 jobs:
   terraform:
     runs-on: ubuntu-latest
