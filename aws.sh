@@ -6,7 +6,7 @@ POLICY_ARN="arn:aws:iam::aws:policy/AmazonS3FullAccess"
 INSTANCE_ID="i-077636a4f920985df" 
 
 # Step 3: Create a trust policy file (for EC2 service)
-TRUST-POLICY='{
+TRUST-POLICY="{
   "Version": "2012-10-17",
   "Statement": [
     {
@@ -17,7 +17,7 @@ TRUST-POLICY='{
       "Action": "sts:AssumeRole"
     }
   ]
-}'
+}"
 
 
 # Step 1: Create IAM Role
