@@ -3,14 +3,14 @@
 # Variables
 ROLE_NAME="EC2-S3-FullAccess-Role"
 POLICY_ARN="arn:aws:iam::aws:policy/AmazonS3FullAccess"
-INSTANCE_ID="ami-02ddb77f8f93ca4ca" 
+INSTANCE_ID="i-077636a4f920985df" 
 
 # Step 1: Create IAM Role
 echo "Creating IAM role with S3 full access..."
 
 aws iam create-role \
     --role-name $ROLE_NAME \
-    --assume-role-policy-document file://trust-policy.json
+    --assume-role-policy-document $Trust-poicy
 
 # Step 2: Attach S3 Full Access Policy
 echo "Attaching AmazonS3FullAccess policy to the role..."
@@ -20,7 +20,7 @@ aws iam attach-role-policy \
     --policy-arn $POLICY_ARN
 
 # Step 3: Create a trust policy file (for EC2 service)
-cat <<EOF > trust-policy.json
+Trust-poicy =
 {
   "Version": "2012-10-17",
   "Statement": [
