@@ -43,6 +43,6 @@ resource "aws_instance" "example"
   vpc_security_group_ids = [aws_security_group.webtraffic.id]
 
   tags = {
-    Name = instance-1
+    Name = "instance-1"
   }
 }
