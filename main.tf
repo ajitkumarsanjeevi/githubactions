@@ -4,13 +4,12 @@ provider "aws" {
 }
 # Create two EC2 instances using count
 resource "aws_instance" "example" {
-  count         = var.
-  ami           = 
+  count         = length(var.instance_names)
+  ami           = "ami-02ddb77f8f93ca4ca"
   key_name      = "splunk"
-  instance_type = "t2.micro"  # Example instance type
-  
-  # Dynamically assign names using count.index
+  instance_type = "t2.micro" 
+
   tags = {
-    Name = 
+    Name = var.instance_names
   }
 
