@@ -21,6 +21,9 @@ jobs:
           aws-region: "ap-south-1"
 
       - name: Verify AWS CLI installation
-        run: bash aws.sh
+        run: chmod 777 ./aws.sh
+
+      - name: Verify AWS CLI installation
+        run: ./aws.sh
           
 
