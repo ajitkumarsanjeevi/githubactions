@@ -6,7 +6,7 @@
 ROLE_NAME="Eksworkernodepolicy" 
 
 
-function  ekswokernodepolicy() {
+ekswokernodepolicy() {
 
 
 echo "Creating IAM role with S3 full access..."
