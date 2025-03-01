@@ -24,3 +24,8 @@ eksworkernodepolicy "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
 
 eksworkernodepolicy "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 
+aws iam create-role \
+    --role-name Ekscluster \
+    --assume-role-policy-document file://masternodepolicy.json
+
+
