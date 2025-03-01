@@ -28,6 +28,11 @@ aws iam create-role \
     --role-name Ekscluster \
     --assume-role-policy-document file://masternodepolicy.json
 
+
+aws iam attach-role-policy \
+    --role-name Ekscluster \
+    --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+
     
 
 
