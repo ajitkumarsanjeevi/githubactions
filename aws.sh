@@ -28,4 +28,6 @@ aws iam create-role \
     --role-name Ekscluster \
     --assume-role-policy-document file://masternodepolicy.json
 
+    
+
 
