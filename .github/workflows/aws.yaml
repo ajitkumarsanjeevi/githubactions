@@ -26,5 +26,8 @@ jobs:
 
       - name: Verify AWS CLI installation
         run: ./aws.sh
+
+      - name: kubectl version
+        run: kubectl version --client
           
 
