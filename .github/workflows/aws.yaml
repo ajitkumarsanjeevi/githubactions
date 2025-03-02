@@ -33,3 +33,6 @@ jobs:
       - name: minikuber version
         run: minikube version
 
+      - name: ansbile
+        run: ansible --version
+
