@@ -4,7 +4,6 @@ FROM nginx:alpine
 # COPY ./nginx.conf /etc/nginx/nginx.conf
 
 # Copy static content into the container (e.g., HTML, CSS, JS files)
-COPY ./html /usr/share/nginx/html
 
 # Expose port 80 to access the Nginx server from outside the container
 EXPOSE 80
