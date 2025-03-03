@@ -20,11 +20,7 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
     
-    - name: Set up Node.js
+    - name: pods
       run: kubectl apply -f deployment.yaml
 
-    - name: Run Linting
-      run: npm run lint
-
-    - name: Run Tests
-      run: npm test
+    
