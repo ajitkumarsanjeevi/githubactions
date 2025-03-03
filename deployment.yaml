@@ -1,10 +1,19 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: my-pod
+  name: my-deployment
 spec:
-  containers:
-  - name: nginx-container
-    image: nginx:latest
-    ports:
-    - containerPort: 80
+  replicas: 3  # Number of pods you want
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-container
+          image: nginx  # The container image you want to use
+          ports:
+            - containerPort: 80
