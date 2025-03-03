@@ -1,50 +1,30 @@
-name: Second Workflow
+name: CI Pipeline
 
+# Trigger the workflow on push or pull request to the 'main' branch
 on:
-  workflow_run:
-    workflows: ["Terraform CI/CD"] 
-    types:
-      - completed
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Define the jobs for the workflow
 jobs:
-  terraform:
+  build:
+    # The job will run on the latest Ubuntu image
     runs-on: ubuntu-latest
-    
+
+    # Steps to be executed within the job
     steps:
-     
-      - name: Checkout Code
-        uses: actions/checkout@v2
+    - name: Checkout the code
+      uses: actions/checkout@v2
     
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.ACCESS_ID }}
-          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
-          aws-region: "ap-south-1"
+    - name: Set up Node.js
+      run: kubectl apply -f deployment.yaml
 
-      - name: Verify AWS CLI installation
-        run: chmod 777 ./aws.sh
+    - name: Run Linting
+      run: npm run lint
 
-      - name: Verify AWS CLI installation
-        run: ./aws.sh
-
-      - name: kubectl version
-        run: kubectl version --client
-        
-      - name: minikuber version
-        run: minikube version
-
-      - name: ansbile1
-        run: ansible --version
-
-      - name: ansbile2
-        run: ansible --version
-
-      - name: ansbile3
-        run: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
-
-
-      - name: ansbile4
-        run: helm repo update
-
-      - name: ansbile5
-        run: helm install splunk-otel-collector --set="splunkObservability.accessToken=hrcFy3Yu3QsBT0ouLEHapQ,clusterName=abc,splunkObservability.realm=us1,gateway.enabled=false,splunkObservability.profilingEnabled=true,environment=dev,operatorcrds.install=true,operator.enabled=true,agent.discovery.enabled=true" splunk-otel-collector-chart/splunk-otel-collector
+    - name: Run Tests
+      run: npm test
