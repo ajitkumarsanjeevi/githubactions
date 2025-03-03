@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: my-deployment
 spec:
-  replicas: 3  # Number of pods you want
+  replicas: 3  
   selector:
     matchLabels:
       app: my-app
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: my-container
-          image: nginx  # The container image you want to use
+          image: nginx  
           ports:
             - containerPort: 80
