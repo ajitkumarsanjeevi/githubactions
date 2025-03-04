@@ -34,7 +34,7 @@ jobs:
       run: docker push ajitkumar204/nginx:latest
 
     - name: switch context
-      run: kubectl config use-context minikube
+      run: kubectl config get-contexts
 
     - name: create namespce
       run: kubectl create namespace argocd
