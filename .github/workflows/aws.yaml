@@ -33,12 +33,8 @@ jobs:
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
 
-    - name: argocd
-      run: sudo kubectl create namespace argocd
+    - name: current context   
+      run: kubectl config current-context
 
-    - name: install argocd
-      run: sudo kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-
-      
-      
+          
     
