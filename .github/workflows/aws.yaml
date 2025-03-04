@@ -32,5 +32,10 @@ jobs:
 
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
+
+    - name: argocd
+      run: argocd --version
+
+      
       
     
