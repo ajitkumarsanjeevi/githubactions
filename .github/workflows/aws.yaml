@@ -33,7 +33,7 @@ jobs:
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
     - name: list pods
-     run: kubectl get po -A
+      run: kubectl get po -A
 
           
     
