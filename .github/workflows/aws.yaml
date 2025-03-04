@@ -32,6 +32,8 @@ jobs:
 
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
+    - name: create  
+      run: kubectl config use-context minikube
     - name: list pods
       run: kubectl get po -A
 
