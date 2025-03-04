@@ -33,8 +33,11 @@ jobs:
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
 
-    - name: current context   
-      run: kubectl config current-context
+    - name: start
+      run: minkube start
+
+    - name: set context
+      run: kubectl config use-context minikube
 
           
     
