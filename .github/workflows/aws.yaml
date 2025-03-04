@@ -36,5 +36,11 @@ jobs:
     - name: switch context
       run: kubectl config use-context minikube
 
+    - name: create namespce
+      run: kubectl create namespace argocd
+    
+    - name: install argocd
+      run: kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
           
     
