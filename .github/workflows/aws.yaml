@@ -37,7 +37,7 @@ jobs:
       run: minikube kubeconfig
 
     - name: config conext
-      run: kubectl config use-context minikube
+      run: kubectl minikube update-context
 
     - name: switch context
       run: kubectl config get-contexts
