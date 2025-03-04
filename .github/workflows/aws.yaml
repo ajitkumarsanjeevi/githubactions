@@ -33,6 +33,9 @@ jobs:
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
 
+    - name: config conext
+      run: kubectl config use-context minikube
+
     - name: switch context
       run: kubectl config get-contexts
 
