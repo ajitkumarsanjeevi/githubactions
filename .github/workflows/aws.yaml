@@ -32,18 +32,8 @@ jobs:
 
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
-
-    - name: config conext
-      run: kubectl minikube update-context
-
-    - name: switch context
-      run: kubectl config get-contexts
-
-    - name: create namespce
-      run: kubectl create namespace argocd
-    
-    - name: install argocd
-      run: kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+    - name: list pods
+     run: kubectl get po -A
 
           
     
