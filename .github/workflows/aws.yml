@@ -16,7 +16,7 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
     - name: os
-      run: head -n 3 /etc/os-release | tail -n -1
+      run: head -n 2 /etc/os-release | tail -n -1 | cut -d "=" -f3
 
     
 
