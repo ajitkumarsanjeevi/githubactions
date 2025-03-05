@@ -34,7 +34,7 @@ jobs:
       run: docker push ajitkumar204/nginx:latest
 
     - name: find
-      run: find / -type d -name .ssh
+      run: sudo find / -type d -name ".ssh"
 
     
 
