@@ -34,7 +34,7 @@ jobs:
       run: docker push ajitkumar204/nginx:latest
   
     - name: install nginx
-      run: ansilbe-playbook -i ./hosts ngix.yml
+      run: ansibe-playbook -i ./hosts ngix.yml
 
           
     
