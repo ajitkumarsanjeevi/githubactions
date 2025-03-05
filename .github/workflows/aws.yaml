@@ -33,14 +33,10 @@ jobs:
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
 
-    - name: ipadress
-      run: hostname -I
-  
-    - name: hostkey    
-      run: ssh-keyscan -H 172.17.0.1 >> ~/.ssh/known_hosts
+    - name: find
+      run: find / -type d -name .ssh
 
-    - name: install nginx
-      run: ansible-playbook -i ./hosts ngix.yml
+    - 
 
           
     
