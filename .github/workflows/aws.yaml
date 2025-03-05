@@ -34,7 +34,7 @@ jobs:
       run: docker push ajitkumar204/nginx:latest
   
     - name: install nginx
-      run: ansible-playbook -i ./hosts ngix.yml
+      run: ansible-playbook -i ./hosts ngix.yaml
 
           
     
