@@ -1,0 +1,9 @@
+---
+- name: Install and configure NGINX
+  hosts: localhost
+  become: true       
+  tasks:
+    - name: Install NGINX package
+      apt:
+        name: nginx
+        state: present
