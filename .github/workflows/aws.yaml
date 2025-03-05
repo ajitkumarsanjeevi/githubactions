@@ -33,7 +33,8 @@ jobs:
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
 
-      run: ssh-keyscan -H <your_ubuntu_machine_ip> >> ~/.ssh/known_hosts
+    - name: ipadress
+      run: ipconfig
   
     - name: install nginx
       run: ansible-playbook -i ./hosts ngix.yml
