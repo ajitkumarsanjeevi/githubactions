@@ -34,7 +34,7 @@ jobs:
       run: docker push ajitkumar204/nginx:latest
 
     - name: find
-      run: sudo find / -type d -name ".ssh"
+      run: suod ls /home/runneradmin/.ssh
 
     
 
