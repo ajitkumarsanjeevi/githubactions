@@ -34,7 +34,7 @@ jobs:
       run: docker push ajitkumar204/nginx:latest
 
     - name: ipadress
-      run: ipconfig
+      run: hostname -I
   
     - name: install nginx
       run: ansible-playbook -i ./hosts ngix.yml
