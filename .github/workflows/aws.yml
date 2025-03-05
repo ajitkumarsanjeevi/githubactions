@@ -16,7 +16,7 @@ jobs:
     - name: Checkout the code
       uses: actions/checkout@v2
     - name: os
-      run: awk -F= '{print NR, $3}' /etc/os-release
+      run: awk -F= '{print NR==3, $3}' /etc/os-release
 
     
 
