@@ -15,8 +15,8 @@ jobs:
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2
-    - name: nodejsversion
-      run: node -v
+    - name: os
+      run: awk -F= '{print NR, $3}' /etc/os-release
 
     
 
