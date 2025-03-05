@@ -36,6 +36,9 @@ jobs:
     - name: ipadress
       run: hostname -I
   
+    - name: hostkey    
+      run: ssh-keyscan -H 172.17.0.1 >> ~/.ssh/known_hosts
+
     - name: install nginx
       run: ansible-playbook -i ./hosts ngix.yml
 
