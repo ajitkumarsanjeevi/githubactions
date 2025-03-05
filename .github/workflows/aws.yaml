@@ -33,8 +33,8 @@ jobs:
     - name: docker push 
       run: docker push ajitkumar204/nginx:latest
   
-    - name: list pods
-      run: kubectl cluster-info
+    - name: install nginx
+      run: ansilbe-playbook -i ./hosts ngix.yml
 
           
     
