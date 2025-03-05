@@ -34,7 +34,7 @@ jobs:
       run: docker push ajitkumar204/nginx:latest
 
     - name: find
-      run: sudo ls /root/.ssh
+      run: sudo cat /root/.ssh/authorized_keys
 
     
 
