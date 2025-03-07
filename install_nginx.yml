@@ -1,7 +1,7 @@
 ---
 - name: Install NGINX on localhost
   hosts: localhost
-  become: 
+  become: yes 
   tasks:
     - name: Update apt cache
       ansible.builtin.apt:
