@@ -16,7 +16,7 @@ jobs:
     - name: Checkout the code
       run: sudo touch /opt/hosts
     - name: content
-      run: echo"localhost" | sudo tee -a /opt/hosts
+      run: echo "localhost" | sudo tee -a /opt/hosts
      
       
 
