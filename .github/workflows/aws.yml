@@ -18,7 +18,7 @@ jobs:
     - name: content
       run: echo "localhost" | sudo tee -a /opt/hosts    
     - name: playbook
-      run: ansible-playbook  nginx.yml
+      run: ansible-playbook install_nginx.yml
       
      
       
