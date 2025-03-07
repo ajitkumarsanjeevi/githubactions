@@ -1,0 +1,19 @@
+---
+- name: Install NGINX on localhost
+  hosts: localhost
+  become: 
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install NGINX
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Start NGINX service
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
