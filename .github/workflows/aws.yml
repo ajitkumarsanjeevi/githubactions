@@ -13,7 +13,9 @@ jobs:
 
     # Steps to be executed within the job
     steps:
-    - name: Checkout the code
+    - name: checkout
+      run: actions/checkout@v2 
+    - name: touch
       run: sudo touch /opt/hosts
     - name: content
       run: echo "localhost" | sudo tee -a /opt/hosts    
