@@ -14,9 +14,11 @@ jobs:
     # Steps to be executed within the job
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2
-    - name: os
-      run: head -n 2 /etc/os-release | tail -n 1 | cut -d "=" -f2 | tr -d '"'
+      run: sudo touch /opt/hosts
+    - name: content
+      run: echo"localhost" | sudo tee -a /opt/hosts
+     
+      
 
     
 
