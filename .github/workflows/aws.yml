@@ -16,9 +16,10 @@ jobs:
     - name: Checkout the code
       run: sudo touch /opt/hosts
     - name: content
-      run: echo "localhost" | sudo tee -a /opt/hosts
+      run: echo "localhost" | sudo tee -a /opt/hosts    
     - name: playbook
-      run: ansible-playbook -i /opt/hosts nginx.yml
+      run: ansible-playbook  nginx.yml
+      
      
       
 
