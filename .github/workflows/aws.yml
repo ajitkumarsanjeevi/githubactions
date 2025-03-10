@@ -15,12 +15,8 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2 
-    - name: touch
-      run: sudo touch /opt/hosts
-    - name: content
-      run: echo "localhost" | sudo tee -a /opt/hosts    
-    - name: playbook
-      run: ansible-playbook install_nginx.yml
+    - name: status
+      run: systemctl status nginx | grep -i "active" | awk '{print $2}'
       
      
       
