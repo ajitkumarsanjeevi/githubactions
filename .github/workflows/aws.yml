@@ -16,7 +16,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2 
     - name: status
-      run: systemctl status nginx | grep -i "active" | awk '{print $2}'
+      run: systemctl status nginx | awk 'NR==3 {print $2}'
       
      
       
