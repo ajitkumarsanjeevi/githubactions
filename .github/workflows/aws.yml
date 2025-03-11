@@ -29,8 +29,8 @@ jobs:
 
 
 
-    - name: trivy
-      run: trivy --version
+    - name: scan docker image
+      run: tirvy image nginx1
     
       
      
