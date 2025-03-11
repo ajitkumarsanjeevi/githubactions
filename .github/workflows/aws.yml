@@ -16,27 +16,8 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2 
 
-    - name: build
-      run: docker build -t nginx1 .
-
-    - name: Install Trivy
-      run: |
-             sudo apt-get install wget apt-transport-https gnupg lsb-release
-             wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-             echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-             sudo apt-get update
-             sudo apt-get install trivy
-
-    - name: update 
-      run: sudo apt-get update && sudo apt-get install -y libxyz=2.13.4-r4
-    - name: scan docker image
-      run: trivy image nginx1
-    
-      
-     
-      
-
-    
+    - name: open file
+      run: sudo cat ~/.docker/config.json
 
           
     
