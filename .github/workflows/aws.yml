@@ -16,10 +16,12 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2 
 
-    - name: start
-      run: sudo systemctl start nginx
-    - name: status
-      run: systemctl status nginx | awk 'NR==3 {print $2}'
+    - name: build
+      run: docker build -t nginx1
+
+    - name: trivy
+      run: trivy --version
+    
       
      
       
