@@ -30,7 +30,7 @@ jobs:
 
 
     - name: scan docker image
-      run: tirvy image nginx1
+      run: trivy image nginx1
     
       
      
