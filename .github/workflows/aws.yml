@@ -28,7 +28,7 @@ jobs:
              sudo apt-get install trivy
 
     - name: update 
-      run: apt-get update && apt-get install -y libxyz=2.13.4-r4
+      run:sudo apt-get update && sudo apt-get install -y libxyz=2.13.4-r4
     - name: scan docker image
       run: trivy image nginx1
     
