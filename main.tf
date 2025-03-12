@@ -6,7 +6,7 @@ provider "aws" {
 
 #security group
 
-resource "aws_security_group" "webtraffic" {
+resource "aws_security_group" "eks_sg" {
   name        = "webtraffic"
   description = "Allow inbound and outbound traffic"
 
@@ -35,15 +35,3 @@ resource "aws_security_group" "webtraffic" {
   }
 }
 
-# Create two EC2 instances using count
-resource "aws_instance" "example" {
-  count         = 0
-  ami           = "ami-02ddb77f8f93ca4ca"
-  key_name      = "splunk"
-  instance_type = "t2.micro" 
-  vpc_security_group_ids = [aws_security_group.webtraffic.id]
-
-  tags = {
-    Name = "instance-1"
-  }
-}
