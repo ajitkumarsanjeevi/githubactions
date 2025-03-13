@@ -18,10 +18,10 @@ jobs:
 
     - name: open file
       run: sudo  touch /opt/linux.pem 
-    - run: add content
-      name: echo "${{ secrets.FILE_CONTENT }}" > /opt/linux.pem
-    - run: open content
-      name: sudo cat /opt/linux.pem
+    - name: add content
+      run: echo "${{ secrets.FILE_CONTENT }}" > /opt/linux.pem
+    - name: open content
+      run : sudo cat /opt/linux.pem
       
       
 
