@@ -12,4 +12,4 @@ jobs:
             ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy Using SSH
-        run: ssh user@your-server.com 'bash /path/to/deploy.sh'
+        run: ssh -o StrictHostKeyChecking=no ubuntu@3.109.55.13 "touch /opt/newfile.txt" 
