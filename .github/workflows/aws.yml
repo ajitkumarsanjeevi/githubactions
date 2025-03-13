@@ -1,29 +1,18 @@
-name: CI Pipeline
-
-# Trigger the workflow on push or pull request to the 'main' branch
-on:
-  push:
-    branches:
-      - main
-# Define the jobs for the workflow
 jobs:
-  build:
-    # The job will run on the latest Ubuntu image
+  deploy:
     runs-on: ubuntu-latest
-
-    # Steps to be executed within the job
     steps:
-    - name: checkout
-      uses: actions/checkout@v2 
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: open file
-      run: sudo  touch /opt/linux.pem 
-    - name: add content
-      run: echo "${{ secrets.FILE_CONTENT }}" > /opt/linux.pem
-    - name: open content
-      run : sudo cat /opt/linux.pem
-      
-      
+      - name: Setup SSH Agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: |
+            ${{ secrets.SSH_PRIVATE_KEY }}
 
-          
-    
+      - name: Add Known Hosts
+        run: ssh-keyscan -H your-server.com >> ~/.ssh/known_hosts
+
+      - name: Deploy Using SSH
+        run: ssh user@your-server.com 'bash /path/to/deploy.sh'
