@@ -118,3 +118,18 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
   role        = aws_iam_role.eks_cluster_role.name 
 }
 
+resource "aws_eks_cluster" "eks_cluster" {
+  name     = "my-eks-cluster"
+  role_arn = aws_iam_role.eks_worker_node_role.arn
+
+  vpc_config {
+    subnet_ids         = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
+    security_group_ids = [aws_security_group.webtraffic.id]
+    endpoint_private_access = true
+    endpoint_public_access  = true
+  }
+
+  version = "1.28"
+}
+
+
