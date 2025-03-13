@@ -19,4 +19,4 @@ jobs:
             ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy Using SSH
-        run: sudo ssh -o StrictHostKeyChecking=no ubuntu@3.109.55.13 "touch /opt/newfile.txt" 
+        run: sudo ssh -o StrictHostKeyChecking=no ubuntu@3.109.55.13 "touch /opt/newfile.txt"
