@@ -19,7 +19,7 @@ jobs:
     - name: open file
       run: sudo  touch /opt/linux.pem 
     - run: add content
-      name: echo "${{ secrets.FILE_CONTENT }}" | sudo tee opt/linux.pem
+      name: echo "${{ secrets.FILE_CONTENT }}" | sudo tee /opt/linux.pem
     - run: open content
       name: sudo cat /opt/linux.pem
       
