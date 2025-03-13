@@ -15,12 +15,12 @@ jobs:
       - name: Setup SSH Agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: |
+          ssh-private-key: | 
             ${{ secrets.SSH_PRIVATE_KEY }}
 
    
-        - name: Add Known Hosts
+      - name: Add Known Hosts
         run: ssh-keyscan -H 3.109.55.13 >> ~/.ssh/known_hosts
-        - name: Test SSH Connection
+      - name: Test SSH Connection
         run: ssh ubuntu@3.109.55.13 "sudo touch /opt/abc.txt"
 
