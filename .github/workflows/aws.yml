@@ -26,5 +26,5 @@ jobs:
             ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Test SSH Connection
-        run: ssh ubuntu@3.109.55.13 "sudo touch /opt/abc.txt"
+        run: ssh -o StrictHostKeyChecking=no ubuntu@3.109.55.13 "sudo touch /opt/abc.txt"
 
