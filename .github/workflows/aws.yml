@@ -13,6 +13,9 @@ jobs:
         uses: actions/checkout@v4
       - name: shell script
         run: sudo sh file.sh
+
+      - name: list
+        run: sudo ls /opt 
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
         with:
