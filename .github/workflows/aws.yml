@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: shell script
+        run: ./file.sh
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
         with:
