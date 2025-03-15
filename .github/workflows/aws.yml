@@ -20,7 +20,7 @@ jobs:
 
       - name: Execute Command on Remote Server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@13.203.104.207 "touch /opt/testfile.txt"
+         sudo ssh -o StrictHostKeyChecking=no ubuntu@13.203.104.207 "touch /opt/testfile.txt"
 
       - name: list
         run: sudo ls /opt 
