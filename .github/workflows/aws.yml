@@ -20,8 +20,7 @@ jobs:
           
       - name: Execute Command on Remote Server
         run: |
-         sudo ssh  -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@13.203.104.207: "sudo chmod 777 /opt"
-         sudo scp script.sh ubuntu@13.203.104.207:/opt/
+         sudo ssh  -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@13.203.104.207: "sudo touch /opt/abc.txt"
 
       - name: list
         run: sudo ls /opt 
