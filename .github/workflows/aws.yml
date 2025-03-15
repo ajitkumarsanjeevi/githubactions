@@ -21,7 +21,7 @@ jobs:
         run: |
          
          sudo ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./script.sh ubuntu@13.203.104.207:"sudo chmod 777 /opt"
-         sudo scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa script.sh ubuntu@13.203.104.207:/opt/
+         sudo scp -o StrictHostKeyChecking=no  script.sh ubuntu@13.203.104.207:/opt/
 
       - name: list
         run: sudo ls /opt 
