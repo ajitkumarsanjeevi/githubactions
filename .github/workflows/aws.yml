@@ -13,10 +13,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup SSH Key
         run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H your-server-ip >> ~/.ssh/known_hosts
+          
       - name: Execute Command on Remote Server
         run: |
          sudo ssh ubuntu@13.203.104.207: "sudo chmod 777 /opt"
