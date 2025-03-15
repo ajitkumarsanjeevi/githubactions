@@ -11,17 +11,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Setup SSH Key
-        run: |
-               mkdir -p ~/.ssh/
-               echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-               chmod 600 ~/.ssh/id_rsa
-               ssh-keyscan -H 13.203.104.207 >> ~/.ssh/known_hosts
+      - name: SSH to Remote Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 13.203.104.207
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            ssh -o StrictHostKeyChecking=no ubuntu@13.203.104.207 "sudo touch /opt/abc.txt"
           
-      - name: Execute Command on Remote Server
-        run: |
-         sudo ssh  -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@13.203.104.207: "sudo touch /opt/abc.txt"
-
       - name: list
         run: sudo ls /opt 
       - name: Install Terraform
