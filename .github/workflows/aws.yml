@@ -15,7 +15,9 @@ jobs:
         run:  |
                 if git --version >/dev/null 2&1; then 
   
-                echo "jenkins installed"
+                echo "gi installed"
+
+                fi
 
       - name: Setup SSH Key
         run: |
