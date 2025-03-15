@@ -18,7 +18,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            ssh -o StrictHostKeyChecking=no ubuntu@13.203.104.207 "sudo touch /opt/abc.txt"
+            sudo ssh -o StrictHostKeyChecking=no ubuntu@13.203.104.207 "sudo touch /opt/abc.txt"
           
       - name: list
         run: sudo ls /opt 
