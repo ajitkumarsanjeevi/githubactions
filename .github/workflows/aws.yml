@@ -19,6 +19,7 @@ jobs:
           ssh-keyscan -H 13.203.104.207 >> ~/.ssh/known_hosts
       - name: SSH into Server and Execute Command
         run: |
+                sudo ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa script.sh ubuntu@13.203.104.207:/opt
                 sudo ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@13.203.104.207 "sudo touch /opt/abc.txt"
 
           
