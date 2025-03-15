@@ -11,6 +11,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: package check
+        run:  |
+                if jenkins --version >/dev/null 2&1; then 
+  
+                echo "jenkins installed"
+
       - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh/
