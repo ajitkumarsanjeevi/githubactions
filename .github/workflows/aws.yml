@@ -13,11 +13,9 @@ jobs:
         uses: actions/checkout@v4
       - name: package check
         run:  |
-                if which git >/dev/null 2&1; then 
-  
-                echo "gi installed"
-
-                fi
+              if git --version &>/dev/null; then
+              echo "git installed"
+                 fi
 
       - name: Setup SSH Key
         run: |
