@@ -11,8 +11,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: shell script
-        run: sudo sh file.sh
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H 13.203.104.207 >> ~/.ssh/known_hosts
+
+      - name: Execute Command on Remote Server
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@13.203.104.207 "touch /opt/testfile.txt"
 
       - name: list
         run: sudo ls /opt 
