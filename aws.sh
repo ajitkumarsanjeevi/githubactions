@@ -1,13 +1,52 @@
+{                      
+
+"Version": "2012-10-17",  
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com" 
+            },
+            "Action": "sts:AssumeRole" 
+        }
+    ]
+}
+
 #!/bin/bash
 
-azs=$(aws ec2 describe-availability-zones --region ap-south-1 --query "AvailabilityZones[*].ZoneName" --output text)
+# Variables
 
-for avaiability_zones in "$azs"
+ROLE_NAME="s3fullaccess"
 
-do
+INSTANCE_PROFILE_NAME="myinstanceprofile"
+ 
+s3_fullaccess() {   
 
-echo "$avaiability_zones"
+echo "Creating IAM role with S3 full access..."
 
-done
+aws iam create-role \
+    --role-name $ROLE_NAME \
+    --assume-role-policy-document trustpolicy.json 
+
+# Step 2: Attach S3 Full Access Policy
+echo "Attaching AmazonS3FullAccess policy to the role..."
+
+aws iam attach-role-policy \
+    --role-name $ROLE_NAME \
+    --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess 
+
+aws iam create-instance-profile \
+    --instance-profile-name $INSTANCE_PROFILE_NAME
+
+# Add Role to Instance Profile
+aws iam add-role-to-instance-profile \
+    --instance-profile-name $INSTANCE_PROFILE_NAME \
+    --role-name $ROLE_NAME
 
 
+aws ec2 associate-iam-instance-profile \
+    --instance-id $1 \
+    --iam-instance-profile Name=$INSTANCE_PROFILE_NAME
+
+}
+s3_fullaccess instanceid            
