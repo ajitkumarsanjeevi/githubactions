@@ -33,7 +33,7 @@ jobs:
 
       - name: script
         run: sh aws.sh
-        continue-on-error: true
+        
 
       
 
