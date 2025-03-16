@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: aws
-        run: sudo sh aws.sh
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -24,6 +22,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
+
+      - name: aws
+        run: sudo sh aws.sh    
       - name: Initialize Terraform
         run: terraform init
 
