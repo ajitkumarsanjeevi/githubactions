@@ -24,7 +24,7 @@ jobs:
           aws-region: ap-south-1
 
       - name: aws
-        run: sudo sh aws.sh    
+        run: sudo bash aws.sh    
       - name: Initialize Terraform
         run: terraform init
 
