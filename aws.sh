@@ -13,7 +13,7 @@ echo "Creating IAM role with S3 full access..."
 
 aws iam create-role \
     --role-name $ROLE_NAME \
-    --assume-role-policy-document file://trustpolicy.json
+    --assume-role-policy-document file://trust-policy.json
 
 # Step 2: Attach S3 Full Access Policy
 echo "Attaching AmazonS3FullAccess policy to the role..."
