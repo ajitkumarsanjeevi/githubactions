@@ -24,3 +24,6 @@ variable "ec2_configs" {
       tags = {
         Name = "Instance1"
       }
+    }
+  }
+}
