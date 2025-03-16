@@ -23,6 +23,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
+      - name: Set up AWS CLI
+        run: |
+        # Install AWS CLI
+        sudo apt-get update -y 
+        sudo apt-get install -y awscli
+
+        # Configure AWS CLI
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws configure set region ap-south-1
+
+
       - name: aws
         run: sudo bash aws.sh    
       - name: Initialize Terraform
