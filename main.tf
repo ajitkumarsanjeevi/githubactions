@@ -68,6 +68,8 @@ resource "aws_route_table_association" "subnet_2_assoc" {
 resource "aws_security_group" "webtraffic" {
   name        = "webtraffic"
   description = "Allow inbound and outbound traffic"
+  vpc_id = aws_vpc.main.id
+ 
 
   dynamic "ingress" {
     iterator = port
