@@ -97,15 +97,18 @@ resource "aws_security_group" "webtraffic" {
 }	
 
 resource "aws_instance" "instance_1" {
-ami = "ami-00bb6a80f01f03502"
-key_name = "splunk"
+
+for_each = var.ec2_configs
+
+ami = each.value["ami_id"]
+key_name = each.value["key_name]
 count = 0
-instance_type = "t2.micro"
-availability_zone = "ap-south-1a"
+instance_type = each.value["instance_type]
+availability_zone = each.value["availability_zone']
 subnet_id = aws_subnet.public_subnet_1.id
 vpc_security_group_ids = [aws_security_group.webtraffic.id]
 tags = {
-    Name = "intance_1"
+    Name = each.value["tags"]
   }
 }
 
