@@ -94,7 +94,7 @@ resource "aws_security_group" "webtraffic" {
   }
 }	
 
-resource "aws_instance" "instance_1"
+resource "aws_instance" "instance_1" {
 ami = "ami-00bb6a80f01f03502"
 key_name = "splunk"
 availability_zone = "ap-south-1a"
