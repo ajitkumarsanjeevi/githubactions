@@ -1,10 +1,10 @@
 #!/bin/bash
 ids = $(aws ec2 describe-instances --query "Reservations[*].Instances[*].InstanceId" --output text) 
 
-for instance id $ids
+for instance in "$ids'
 
 do
 
-echo $"ids"
+echo "$instance"
 
 done
