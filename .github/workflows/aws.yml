@@ -11,28 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: package check
-        run:  |
-              if git --version &>/dev/null; then
-              echo "git installed"
-                 fi
-
-      - name: Setup SSH Key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 13.203.104.207 >> ~/.ssh/known_hosts
-      - name: SSH into Server and Execute Command
-        run: |
-                sudo ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@13.203.104.207 "sudo chmod 777 /opt"
-                sudo scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa script.sh ubuntu@13.203.104.207:/opt
-                sudo ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@13.203.104.207 "sudo touch /opt/abc.txt"
-                sudo ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@13.203.104.207 "sudo sh /opt/script.sh" 
-
-          
-      - name: list
-        run: sudo ls /opt 
+      - name: aws
+        run: sudo sh aws.sh
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v3
         with:
