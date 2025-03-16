@@ -106,7 +106,7 @@ instance_type = each.value["instance_type"]
 availability_zone = each.value["availability_zone"]
 subnet_id = aws_subnet.public_subnet_1.id
 vpc_security_group_ids = [aws_security_group.webtraffic.id]
-tags = Name = each.value["tags"]
+tags = each.value["tags"]
   
 }
 
