@@ -1,7 +1,7 @@
 #!/bin/bash
-ids = $(aws ec2 describe-instances --query "Reservations[*].Instances[*].InstanceId" --output text) 
+ids = $(aws ec2 describe-instances --region ap-south-1 --query "Reservations[*].Instances[*].InstanceId" --output text) 
 
-for instance in "$ids'
+for instance in "$ids"
 
 do
 
