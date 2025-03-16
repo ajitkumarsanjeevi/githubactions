@@ -13,7 +13,7 @@ variable "egress-rules" {
   default = [ 22,8080,80,443,25 ]  
 }
 
-ariable "ec2_configs" {
+variable "ec2_configs" {
   type = map(any)
   default = {
     instance1 = {
