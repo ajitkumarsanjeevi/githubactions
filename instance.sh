@@ -1,21 +1,22 @@
 #!/bin/bash
 
-# List of all AWS regions
-regions=$(aws ec2 describe-regions --query "Regions[*].RegionName" --output text)
+# Define the region and availability zone
+region="ap-south-1"
+availability_zone="ap-south-1a"
 
-# Loop through each region
-for region in $regions; do
-  if [[ "$region" == "ap-south-1" ]]; then
-    echo "Fetching instance IDs for region: $region"
-    
-    # Fetch EC2 instance IDs for the current region (ap-south-1)
-    instance_ids=$(aws ec2 describe-instances --region $region --query "Reservations[*].Instances[*].InstanceId" --output text)
-    
-    # Check if there are instance IDs and print them
-    if [ -n "$instance_ids" ]; then
-      echo "$instance_ids"
-    else
-      echo "No instances found in $region"
-    fi
-  fi
-done
+# Fetch EC2 instance IDs in the specified availability zone
+echo "Fetching instance IDs in availability zone: $availability_zone in region: $region"
+
+instance_ids=$(aws ec2 describe-instances \
+  --region $region \
+  --query "Reservations[*].Instances[?Placement.AvailabilityZone=='$availability_zone'].InstanceId" \
+  --output text)
+
+# Check if instance IDs were found
+if [ -n "$instance_ids" ]; then
+  echo "Instance IDs in $availability_zone:"
+  echo "$instance_ids"
+else
+  echo "No instances found in $availability_zone."
+fi
+
