@@ -36,4 +36,4 @@ aws ec2 associate-iam-instance-profile \
     --iam-instance-profile Name=$INSTANCE_PROFILE_NAME
 
 }
-s3_fullaccess instanceid            
+s3_fullaccess i-0130b7df38748b5a0            
