@@ -1,4 +1,4 @@
-provider "aws" 
+provider "aws" { 
 region = "ap-south-1"    
 }
 
@@ -125,6 +125,29 @@ tags = {
   }
 
 }
+# Step 10: Create EKS Node Group (Worker Node Group)
+resource "aws_eks_node_group" "eks_node_group" {
+  cluster_name    = aws_eks_cluster.eks_cluster.name
+  node_group_name = "my-node-group"
+  node_role_arn   = data.aws_iam_role.eks_worker_role.arn
+  subnet_ids      = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
+  instance_types  = ["t2.medium"] 
+  disk_size       = 20  
+  ami_type         = "AL2_x86_64"
+  capacity_type    = "ON_DEMAND"  
+  
+  tags = {
+    "Name"        = "eks-worker-node-group"
+  }
+
+  scaling_config {
+    desired_size = 1
+    max_size     = 1
+    min_size     = 1
+  }
+
+}
+
 # Step 10: Create EKS Node Group (Worker Node Group)
 resource "aws_eks_node_group" "eks_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
