@@ -20,5 +20,5 @@ aws iam attach-role-policy \
 }
 
 eks_worker_node "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-eks_woker_node  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-eks_woker_node  "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"   
+eks_woker_node  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+eks_woker_node  "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"  
