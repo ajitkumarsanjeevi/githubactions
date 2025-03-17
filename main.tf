@@ -2,6 +2,14 @@ provider "aws" {
 region = "ap-south-1"    
 }
 
+data "aws_iam_role" "eks_woker_role" { 
+  name = "eks_worker_role"
+}
+
+data "aws_iam_role" "eks_cluster_role" {
+  name = "eks_role"
+}
+
 resource "aws_vpc" "main" {            
   cidr_block = "10.0.0.0/16"
   enable_dns_support   = true 
@@ -100,9 +108,7 @@ resource "aws_security_group" "eks-sg" {
   }
 }	
 
-data "aws_iam_role" "eks_cluster_role" {
-  name = "eks_role"
-}
+
 
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "my-eks-cluster"
@@ -123,9 +129,7 @@ tags = {
 }
 
 
-data "aws_iam_role" "eks_woker_role" { 
-  name = "eks_worker_role"
-}
+
 # Step 10: Create EKS Node Group (Worker Node Group)
 resource "aws_eks_node_group" "eks_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
