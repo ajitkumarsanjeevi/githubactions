@@ -25,13 +25,16 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
+      - name: script
+        run: sh role.sh
+
       - name: Terraform Plan
         run: terraform plan 
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-      - name: terraform destroy
-        run: terraform destroy -auto-approve
+      
+        
 
       
 
