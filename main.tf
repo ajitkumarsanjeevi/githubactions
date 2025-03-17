@@ -65,8 +65,8 @@ resource "aws_route_table_association" "subnet_2_assoc" {
   route_table_id = aws_route_table.public_rt.id
 }
 
-resource "aws_security_group" "webtraffic" {
-  name        = "webtraffic"
+resource "aws_security_group" "eks-sg" {
+  name        = "eks"
   description = "Allow inbound and outbound traffic"
   vpc_id = aws_vpc.main.id
  
