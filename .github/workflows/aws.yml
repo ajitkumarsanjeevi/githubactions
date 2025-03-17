@@ -30,9 +30,8 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-
-      - name: script
-        run: sh instance.sh
+      - name: terraform destroy
+        run: terraform destroy -auto-approve
 
       
 
