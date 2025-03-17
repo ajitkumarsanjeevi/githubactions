@@ -1,14 +1,7 @@
-provider "aws" { 
+provider "aws" 
 region = "ap-south-1"    
 }
 
-data "aws_iam_role" "eks_woker_role" { 
-  name = "eks_worker_role"
-}
-
-data "aws_iam_role" "eks_cluster_role" {
-  name = "eks_role"
-}
 
 resource "aws_vpc" "main" {            
   cidr_block = "10.0.0.0/16"
@@ -108,11 +101,54 @@ resource "aws_security_group" "eks-sg" {
   }
 }	
 
+# Create IAM role with assume role policy for EKS cluster
+resource "aws_iam_role" "eks_cluster_role" {
+  name               = "eks-cluster-role"  # Role name
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow"
+        Action    = "sts:AssumeRole"
+        Principal = {
+          Service = "eks.amazonaws.com"  # EKS service needs to assume this role
+        }
+      }
+    ]
+  })
+}
 
+# Attach AmazonEKSClusterPolicy to the EKS role
+resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
+  role       = aws_iam_role.eks_cluster_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+}
+
+resource "aws_iam_role" "eks_worker_role" {
+  name               = "eks-worker-node-role"  
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow"
+        Action    = "sts:AssumeRole"
+        Principal = {
+          Service = "ec2.amazonaws.com"  
+        }
+      }
+    ]
+  })
+}
+# Step 3: Attach each policy in the list to the IAM role using count
+resource "aws_iam_role_policy_attachment" "eks_worker_node_policy_attachment" {
+  count      = length(var.worker_node_policies) 
+  role       = aws_iam_role.eks_worker_role.name
+  policy_arn = var.worker_node_polocies[count.index]
+}
 
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "my-eks-cluster"
-  role_arn = data.aws_iam_role.eks_cluster_role.arn
+  role_arn = aws_iam_role.eks_cluster_role" 
   version = "1.28"
 
   vpc_config {
@@ -134,7 +170,7 @@ tags = {
 resource "aws_eks_node_group" "eks_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "my-node-group"
-  node_role_arn   = data.aws_iam_role.eks_worker_role.arn
+  node_role_arn   = aws_iam_role."eks_worker_role.arn 
   subnet_ids      = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
   instance_types  = ["t2.medium"] 
   disk_size       = 20  
