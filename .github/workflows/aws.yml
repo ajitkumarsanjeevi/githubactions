@@ -32,7 +32,7 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: eks configure
-        run: aws eks update --name my-eks-cluster --region ap-south-1
+        run: aws eks update-kubeconfig --name my-eks-cluster --region ap-south-1
 
       - name: list nodes  
         run: kubectl get nodes 
