@@ -104,10 +104,6 @@ data "aws_iam_role" "eks_cluster_role" {
   name = "eks_role"
 }
 
-data "aws_iam_role" "eks_woker_role" { 
-  name = "eks_worker_role"
-}
-
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "my-eks-cluster"
   role_arn = data.aws_iam_role.eks_cluster_role.arn
@@ -124,6 +120,11 @@ tags = {
     Name   = "Eks-cluster"
   }
 
+}
+
+
+data "aws_iam_role" "eks_woker_role" { 
+  name = "eks_worker_role"
 }
 # Step 10: Create EKS Node Group (Worker Node Group)
 resource "aws_eks_node_group" "eks_node_group" {
