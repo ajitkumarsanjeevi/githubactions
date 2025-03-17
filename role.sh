@@ -11,7 +11,7 @@ aws iam attach-role-policy \
 
 eks_worker_node (){
 aws iam create-role \
-    --role-name $Worker_role_Name \
+    --role-name $Worker_role_Name 
     --assume-role-policy-document file://eksworker-trust-policy.json
 
 aws iam attach-role-policy \
@@ -20,5 +20,5 @@ aws iam attach-role-policy \
 }
 
 eks_worker_node "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-eks_woker_node  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-eks_woker_node  "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"  
+eks_worker_node  "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+eks_worker_node "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"  
