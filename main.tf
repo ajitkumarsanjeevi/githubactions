@@ -137,7 +137,7 @@ resource "aws_eks_cluster" "eks_cluster" {
     endpoint_public_access  = true
     }
   depends_on = [aws_subnet.public_subnet_1.id]
-  depends_on = [aws_iam_role_policy_attachment.eks_cluster_policy]
+  
    
     
 tags = {
