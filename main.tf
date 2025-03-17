@@ -1,4 +1,4 @@
-provider "aws" {
+provider "aws" 
 region = "ap-south-1"    
 }
 
@@ -136,6 +136,7 @@ resource "aws_eks_cluster" "eks_cluster" {
     endpoint_private_access = true
     endpoint_public_access  = true
     }
+     depends_on = [aws_iam_role_policy_attachment.eks_cluster_policy]
 
   tags = {
     Name   = "Eks-cluster"
