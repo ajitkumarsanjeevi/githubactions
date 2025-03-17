@@ -152,7 +152,7 @@ resource "aws_eks_cluster" "eks_cluster" {
   version = "1.28"
 
   vpc_config {
-    subnet_ids         = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
+    subnet_ids         = ["aws_subnet.public_subnet_1.id", "aws_subnet.public_subnet_2.id"]
     security_group_ids = [aws_security_group.eks-sg.id] 
     endpoint_private_access = true
     endpoint_public_access  = true
@@ -171,7 +171,7 @@ resource "aws_eks_node_group" "eks_node_group" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "my-node-group"
   node_role_arn   = aws_iam_role."eks_worker_role.arn 
-  subnet_ids      = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
+  subnet_ids      = ["aws_subnet.public_subnet_1.id", "aws_subnet.public_subnet_2.id"]
   instance_types  = ["t2.medium"] 
   disk_size       = 20  
   ami_type         = "AL2_x86_64"
