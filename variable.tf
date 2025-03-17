@@ -13,6 +13,12 @@ variable "egress-rules" {
   default = [ 22,8080,80,443 ]
 }
 
+variable "eks_cluster_policies" {
+  description = "List of policy ARNs to attach to the EKS cluster role"
+  type        = list(string)
+  default = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"]
+
+
 variable "worker_node_policies" {
   description = "List of policy ARNs to attach to the EKS worker node role"
   type        = list(string)
