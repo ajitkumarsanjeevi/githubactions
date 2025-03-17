@@ -148,7 +148,7 @@ resource "aws_iam_role_policy_attachment" "eks_worker_node_policy_attachment" {
 
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "my-eks-cluster"
-  role_arn = aws_iam_role.eks_cluster_role" 
+  role_arn = aws_iam_role.eks_cluster_role
   version = "1.28"
 
   vpc_config {
