@@ -149,7 +149,7 @@ resource "aws_eks_node_group" "eks_node_group" {
 }
 
 # Step 10: Create EKS Node Group (Worker Node Group)
-resource "aws_eks_node_group" "eks_node_group" {
+resource "aws_eks_node_group" "eks_node_group_configure" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "my-node-group"
   node_role_arn   = data.aws_iam_role.eks_worker_role.arn
