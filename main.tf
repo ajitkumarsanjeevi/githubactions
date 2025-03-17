@@ -143,7 +143,7 @@ resource "aws_iam_role" "eks_worker_role" {
 resource "aws_iam_role_policy_attachment" "eks_worker_node_policy_attachment" {
   count      = length(var.worker_node_policies) 
   role       = aws_iam_role.eks_worker_role.name
-  policy_arn = var.worker_node_polocies[count.index]
+  policy_arn = var.worker_node_policies[count.index]
 }
 
 resource "aws_eks_cluster" "eks_cluster" {
