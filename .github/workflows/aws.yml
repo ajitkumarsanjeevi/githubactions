@@ -25,9 +25,6 @@ jobs:
       - name: Initialize Terraform
         run: terraform init
 
-      - name: script
-        run: sh role.sh
-
       - name: Terraform Plan
         run: terraform plan 
 
