@@ -131,16 +131,13 @@ resource "aws_eks_cluster" "eks_cluster" {
   version = "1.28"
 
   vpc_config {
-    subnet_ids         = ["aws_subnet.public_subnet_1.id"]
+    subnet_ids         = [aws_subnet.public_subnet_1.id]
     security_group_ids = [aws_security_group.eks-sg.id] 
     endpoint_private_access = true
     endpoint_public_access  = true
     }
-  depends_on = [aws_subnet.public_subnet_1.id]
-  
-   
-    
-tags = {
+
+  tags = {
     Name   = "Eks-cluster"
   }
 
