@@ -8,22 +8,9 @@ variable "ingress-rules" {
   default = [ 22,8080,80,443 ]
 }
 
-variable "egress-rules" {
-  type = list(number)
-  default = [ 22,8080,80,443,25 ]  
+variable "worker_node_policies" {
+  description = "List of policy ARNs to attach to the EKS worker node role"
+  type        = list(string)
+  default = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy, "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly", "arn:aws:iam::aws:policy/AmazonEC2FullAccess"]
 }
 
-variable "ec2_configs" {
-  type = map(any)
-  default = {
-    instance1 = {
-      instance_type = "t2.micro"
-      ami_id        = "ami-00bb6a80f01f03502"
-      availability_zone = "ap-south-1a"
-      key_name      = "splunk"
-      tags = {
-        Name = "Instance1"
-      }
-    }
-  }
-}
