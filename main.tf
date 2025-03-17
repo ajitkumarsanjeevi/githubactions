@@ -111,16 +111,16 @@ data "aws_iam_role" "eks_woker_role" {
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "my-eks-cluster"
   role_arn = data.aws_iam_role.eks_cluster_role.arn
+  version = "1.28"
 
   vpc_config {
     subnet_ids         = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
     security_group_ids = [aws_security_group.eks-sg.id] 
-    }
-    version = "1.28"
     endpoint_private_access = true
     endpoint_public_access  = true
-
-  tags = {
+    }
+    
+tags = {
     Name   = "Eks-cluster"
   }
 
