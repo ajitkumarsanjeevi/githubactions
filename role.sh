@@ -9,7 +9,7 @@ aws iam attach-role-policy \
     --role-name $Cluster_role_Name \
     --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy 
 
-eks_worker_node(){
+eks_worker_node (){
 aws iam create-role \
     --role-name $Worker_role_Name \
     --assume-role-policy-document file://eksworker-trust-policy.json
