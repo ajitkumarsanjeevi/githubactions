@@ -8,6 +8,11 @@ variable "ingress-rules" {
   default = [ 22,8080,80,443 ]
 }
 
+variable "egress-rules" {
+  type = list(number)
+  default = [ 22,8080,80,443 ]
+}
+
 variable "worker_node_policies" {
   description = "List of policy ARNs to attach to the EKS worker node role"
   type        = list(string)
