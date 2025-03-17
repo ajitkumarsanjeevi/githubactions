@@ -69,6 +69,10 @@ resource "aws_security_group" "eks-sg" {
   name        = "eks"
   description = "Allow inbound and outbound traffic"
   vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "eks_sg"
+  }
  
 
   dynamic "ingress" {
