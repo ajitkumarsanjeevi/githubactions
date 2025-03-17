@@ -124,6 +124,27 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
+
+resource "aws_eks_cluster" "eks_cluster" {
+  name     = "my-eks-cluster"
+  role_arn = aws_iam_role.eks_cluster_role.arn 
+  version = "1.28"
+
+  vpc_config {
+    subnet_ids         = ["aws_subnet.public_subnet_1.id", "aws_subnet.public_subnet_2.id"]
+    security_group_ids = [aws_security_group.eks-sg.id] 
+    endpoint_private_access = true
+    endpoint_public_access  = true
+    }
+  depends_on = [aws_iam_role_policy_attachment.eks_cluster_policy]
+   
+    
+tags = {
+    Name   = "Eks-cluster"
+  }
+
+}
+
 resource "aws_iam_role" "eks_worker_role" {
   name               = "eks-worker-node-role"  
   assume_role_policy = jsonencode({
@@ -146,25 +167,6 @@ resource "aws_iam_role_policy_attachment" "eks_worker_node_policy_attachment" {
   policy_arn = var.worker_node_policies[count.index]
 }
 
-resource "aws_eks_cluster" "eks_cluster" {
-  name     = "my-eks-cluster"
-  role_arn = aws_iam_role.eks_cluster_role.arn
-  version = "1.28"
-
-  vpc_config {
-    subnet_ids         = ["aws_subnet.public_subnet_1.id", "aws_subnet.public_subnet_2.id"]
-    security_group_ids = [aws_security_group.eks-sg.id] 
-    endpoint_private_access = true
-    endpoint_public_access  = true
-    }
-    
-tags = {
-    Name   = "Eks-cluster"
-  }
-
-}
-
-
 
 # Step 10: Create EKS Node Group (Worker Node Group)
 resource "aws_eks_node_group" "eks_node_group" {
@@ -186,7 +188,7 @@ resource "aws_eks_node_group" "eks_node_group" {
     max_size     = 1
     min_size     = 1
   }
-
+  depends_on = [aws_iam_role_policy_attachment.eks_worker_node_policy_attachment]
 }
 
 
