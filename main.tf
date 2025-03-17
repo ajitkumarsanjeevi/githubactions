@@ -96,18 +96,6 @@ resource "aws_security_group" "webtraffic" {
   }
 }	
 
-resource "aws_instance" "instance_1" {
 
-for_each = var.ec2_configs
-
-ami = each.value["ami_id"]
-key_name = each.value["key_name"]
-instance_type = each.value["instance_type"]
-availability_zone = each.value["availability_zone"]
-subnet_id = aws_subnet.public_subnet_1.id
-vpc_security_group_ids = [aws_security_group.webtraffic.id]
-tags = each.value["tags"]
-  
-}
 
 
