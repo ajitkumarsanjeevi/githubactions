@@ -103,7 +103,7 @@ resource "aws_security_group" "eks-sg" {
 
 # Create IAM role with assume role policy for EKS cluster
 resource "aws_iam_role" "eks_cluster_role" {
-  name               = "eks-cluster-role"  # Role name
+  name               = "eks-cluster-role" 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
