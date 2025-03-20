@@ -44,6 +44,9 @@ jobs:
       - name: expose pod
         run: kubectl apply -f nginx-deployment-service.yaml
 
+      - name: list pods
+        run: kubectl get pods
+
       
 
       
