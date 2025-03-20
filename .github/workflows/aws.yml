@@ -27,10 +27,18 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan 
-
+ 
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: login to ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: push image
+        run: | 
+            docker build -t nginx .
+            docker tag nginx:latest 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
+            docker push 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
       - name: eks configure
         run: aws eks update-kubeconfig --name my-eks-cluster --region ap-south-1
 
@@ -38,6 +46,9 @@ jobs:
 
       - name: list nodes  
         run: kubectl get nodes 
+
+      - name: list pods
+        run: kubectl get pods
         
 
     
