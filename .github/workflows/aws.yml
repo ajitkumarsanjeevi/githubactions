@@ -31,6 +31,9 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Terraform destroy
+        run: terraform destroy -autp-approve
+
       - name: login to ecr
         uses: aws-actions/amazon-ecr-login@v1
 
@@ -39,16 +42,9 @@ jobs:
           docker build -t nginx .
           docker tag nginx:latest 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
           docker push 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
-      - name: eks configure
-        run: aws eks update-kubeconfig --name my-eks-cluster --region ap-south-1
-      - name: expose pod
-        run: kubectl apply -f nginx-deployment-service.yaml
 
-      - name: list pods
-        run: kubectl get pods
-      - name: sv
-        run: kubectl get svc
-
+          
+      
       
 
       
