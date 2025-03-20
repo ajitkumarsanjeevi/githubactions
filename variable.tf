@@ -5,12 +5,12 @@ variable "instance_names" {
 
 variable "ingress-rules" {
   type = list(number)
-  default = [ 22,8080,80,443 ]
+  default = [ 22,8080,80,443,300080 ]
 }
 
 variable "egress-rules" {
   type = list(number)
-  default = [ 22,8080,80,443 ]
+  default = [ 22,8080,80,443,30080 ]
 }
 
 variable "eks_cluster_policies" {
