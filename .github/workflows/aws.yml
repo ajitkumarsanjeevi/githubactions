@@ -36,13 +36,14 @@ jobs:
 
       - name: push image
         run: | 
-            docker build -t nginx .
-            docker tag nginx:latest 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
-            docker push 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
+          docker build -t nginx .
+          docker tag nginx:latest 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
+          docker push 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
       - name: eks configure
         run: aws eks update-kubeconfig --name my-eks-cluster --region ap-south-1
 
-      - name: kubectl apply -f deployment.yml
+      - name: create pod
+        run: kubectl apply -f deployment.yml
 
       - name: list nodes  
         run: kubectl get nodes 
