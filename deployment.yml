@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-app-container
-        image: <aws_account_id>.dkr.ecr.<region>.amazonaws.com/<repository-name>:<tag> 
+        image: 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
         imagePullPolicy: Always  
         ports:
         - containerPort: 80  
