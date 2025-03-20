@@ -41,6 +41,8 @@ jobs:
           docker push 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
       - name: eks configure
         run: aws eks update-kubeconfig --name my-eks-cluster --region ap-south-1
+      - name: expose pod
+        run: kubectl apply -f nginx-deployment-service.yaml
 
       
 
