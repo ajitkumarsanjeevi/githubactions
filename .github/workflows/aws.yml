@@ -42,11 +42,13 @@ jobs:
       - name: eks configure
         run: aws eks update-kubeconfig --name my-eks-cluster --region ap-south-1
 
-      - name: create pod
-        run: kubectl apply -f deployment.yml
+      - name: create argocd ns
+        run: kubectl create namespace argocd
 
-      - name: list nodes  
-        run: kubectl get nodes 
+      - name: install argocd
+        run: kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+  
 
       - name: list pods
         run: kubectl get pods
