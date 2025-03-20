@@ -22,26 +22,16 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1  
-      - name: Initialize Terraform
-        run: terraform init
-
-      - name: Terraform Plan
-        run: terraform plan 
- 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-
-      - name: Terraform destroy
-        run: terraform destroy -auto-approve
 
       - name: login to ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: push image
-        run: | 
-          docker build -t nginx .
-          docker tag nginx:latest 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
-          docker push 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
+      - name: create repo
+        run: |
+         REPO_NAME="my-new-repo"  
+         aws ecr create-repository --repository-name $REPO_NAME --region ap-south-1 
+
+      
 
           
       
