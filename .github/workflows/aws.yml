@@ -34,9 +34,10 @@ jobs:
       - name: eks configure
         run: aws eks update-kubeconfig --name my-eks-cluster --region ap-south-1
 
+      - name: kubectl apply -f deployment.yml
+
       - name: list nodes  
         run: kubectl get nodes 
         
 
-      
-
+    
