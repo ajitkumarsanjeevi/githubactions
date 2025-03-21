@@ -9,13 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.0
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -23,14 +16,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1  
 
-      - name: login to ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: create repo
+      - name: publicips
         run: |
-         REPO_NAME="my-new-repo"  
-         aws ecr create-repository --repository-name $REPO_NAME --region ap-south-1 
+           REGION="us-east-1"
 
+              
+           PUBLIC_IPS=$(aws ec2 describe-instances \
+           --region "$REGION" \
+           --query "Reservations[*].Instances[*].PublicIpAddress" \
+           --output text)
+           echo "$PUBLIC_IPS"
       
 
           
