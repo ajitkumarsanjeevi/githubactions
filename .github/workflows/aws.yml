@@ -18,9 +18,7 @@ jobs:
 
       - name: publicips
         run: |
-           REGION="us-east-1"
-
-              
+           REGION="ap-south-1"
            PUBLIC_IPS=$(aws ec2 describe-instances \
            --region "$REGION" \
            --query "Reservations[*].Instances[*].PublicIpAddress" \
