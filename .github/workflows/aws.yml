@@ -19,11 +19,11 @@ jobs:
       - name: ls
         run: |
          
-          if git --version &> /dev/null
+          if git --version 
 
           then
     
-          echo "Jenkins is installed."
+          echo "git is installed."
 
           fi
 
