@@ -17,7 +17,18 @@ jobs:
           aws-region: ap-south-1  
 
       - name: ls
-        run: ls opt 2> /dev/null
+        run: |
+         
+          if jenkins --version &> /dev/null
+
+          then
+    
+          echo "Jenkins is installed."
+
+          fi
+
+         
+
           
           
       
