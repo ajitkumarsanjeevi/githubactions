@@ -18,12 +18,30 @@ jobs:
 
       - name: publicips
         run: |
-           REGION="ap-south-1"
-           PUBLIC_IPS=$(aws ec2 describe-instances \
-           --region "$REGION" \
-           --query "Reservations[*].Instances[*].PublicIpAddress" \
-           --output text)
-           echo "$PUBLIC_IPS"
+          #!/bin/bash
+
+
+instance_ids=$(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --output text)
+
+# Loop through each instance to fetch the OS name and IP address
+for instance_id in $instance_ids
+do
+    echo "Fetching details for Instance ID: $instance_id"
+    
+    ami_id=$(aws ec2 describe-instances --instance-ids $instance_id --query "Reservations[0].Instances[0].ImageId" --output text)
+    
+  
+    ami_name=$(aws ec2 describe-images --image-ids $ami_id --query "Images[0].Name" --output text)
+    
+   
+    os_name=$(echo $ami_name | awk -F'/' '{print $2}' | awk -F'-' '{print $1}')
+    
+    public_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
+    
+        # Output the results
+    echo "$os_name $public_ip "
+done
+
       
 
           
