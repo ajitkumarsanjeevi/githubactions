@@ -19,7 +19,7 @@ jobs:
       - name: ls
         run: |
          
-          if jenkins --version &> /dev/null
+          if git --version &> /dev/null
 
           then
     
