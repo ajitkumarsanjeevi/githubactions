@@ -1,8 +1,8 @@
 # Use the official Ubuntu image as the base image
-FROM ubuntu:latest
+FROM nginx:latest
 
 
-RUN apt update && apt install -y nginx
+
 
 
 EXPOSE 80
