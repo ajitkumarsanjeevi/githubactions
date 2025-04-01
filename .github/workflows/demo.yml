@@ -27,6 +27,8 @@ jobs:
 
       - name: Set up environment to disable SSH host key checking
         run: echo "ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
+      - name: permission 
+        run:  chmod 777 .\r\nrunner
 
       - name: login
         run: ansible-playbook -i hosts ecr.yml
