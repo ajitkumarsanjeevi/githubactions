@@ -26,7 +26,7 @@ jobs:
           aws-region: ap-south-1
 
       - name: login
-        run: ansible-playbook ecr.yml
+        run: ansible-playbook -i hosts ecr.yml
       
 
       
