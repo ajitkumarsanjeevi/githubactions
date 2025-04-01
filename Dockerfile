@@ -1,5 +1,6 @@
 # Use the official Ubuntu image as the base image
-FROM nginx:latest
+FROM ubuntu
+RUN apt-get update && apt-get install nginx
 
 
 
