@@ -1,5 +1,5 @@
-provider "aws" { 
-region = "ap-south-1"    
+provider "aws" 
+region = "us-east-1"    
 }
 
 
@@ -17,7 +17,7 @@ resource "aws_subnet" "public_subnet_1" {
   vpc_id                  = aws_vpc.main.id     
   cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "ap-south-1a"  
+  availability_zone       = "us-east-1a"  
 
   tags = {
     Name = "PublicSubnet1"
@@ -28,7 +28,7 @@ resource "aws_subnet" "public_subnet_2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
-  availability_zone       = "ap-south-1b"
+  availability_zone       = "us-east-1b"
 
   tags = {
     Name = "PublicSubnet2"
@@ -174,7 +174,7 @@ resource "aws_eks_node_group" "eks_node_group" {
   node_group_name = "my-node-group"
   node_role_arn   = aws_iam_role.eks_worker_role.arn 
   subnet_ids      = [aws_subnet.public_subnet_1.id, aws_subnet.public_subnet_2.id]
-  instance_types  = ["t2.medium"] 
+  instance_types  = ["t2.micro"] 
   disk_size       = 20  
   ami_type         = "AL2_x86_64"
   capacity_type    = "ON_DEMAND"  
