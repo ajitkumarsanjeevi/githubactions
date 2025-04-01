@@ -28,8 +28,7 @@ jobs:
       
       
 
-      - name: login
-        run: ansible-playbook -i hosts ecr.yml
+      
       
 
       
