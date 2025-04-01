@@ -26,8 +26,7 @@ jobs:
           aws-region: ap-south-1
 
       - name: login
-        run: aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 585768173504.dkr.ecr.ap-south-1.amazonaws.com
-
+        run: ansible-playbook ecr.yml
       
 
       
