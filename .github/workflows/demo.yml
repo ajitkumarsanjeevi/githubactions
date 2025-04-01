@@ -27,18 +27,10 @@ jobs:
 
       
 
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
+      
 
-      - name: push to ecr
-        run: |
-            docker build -t nginx .
-            docker tag nginx 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
-            
-            docker push 585768173504.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest
-            
-      - name: apply
-        run: kubectl apply -f deployement-service.yml
+      
+
         
 
 
