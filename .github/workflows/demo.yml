@@ -5,9 +5,10 @@ on:
     branches: 
       - main  
 
-jobs: 
+jobs:  
   terraform:
     runs-on: ubuntu-latest 
+    
     
     steps:
       - name: Checkout Code
@@ -25,8 +26,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1   
+
       - name: init
-        run: terraform init
+        run: terraform in
 
       - name: plan
         run: terraform plan
