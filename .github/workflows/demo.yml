@@ -57,7 +57,10 @@ jobs:
       - name: update kubeconfig
         run: aws eks update-kubeconfig --name my-eks-cluster  --region us-east-1
 
-      - name: deploy
+      - name: delete
+        run: kubectl delete -f nginx-deployment-service.yaml
+
+      - name: deploy 
         run: kubectl apply -f nginx-deployment-service.yaml
 
       - name: svc
