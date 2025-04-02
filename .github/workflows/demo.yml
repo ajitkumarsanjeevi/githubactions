@@ -67,6 +67,8 @@ jobs:
       - name: pod
         run: kubectl get pods
 
+      - name: kubectl describe nginx-deployment-54dcc97b7b-cmfkl  
+
         
     
 
