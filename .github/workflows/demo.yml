@@ -35,6 +35,7 @@ jobs:
 
       - name: create ecr repo
         run: aws ecr create-repository --repository-name nginx --region us-east-1
+        continue-on-error: true  
 
       - name: build docker image
         run: docker build -t nginx .
