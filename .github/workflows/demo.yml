@@ -26,17 +26,25 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      
+
+      
+
       - name: Log in to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1   
+        uses: aws-actions/amazon-ecr-login@v1
 
-      - name: init
-        run: terraform in
+      - name: create ecr repo
+        run: aws ecr create-repository --repository-name nginx --region us-east-1
 
-      - name: plan
-        run: terraform plan
+      - name: build docker image
+        run: docker build -t nginx .
 
-      - name: apply
-        run: terraform apply -auto-approve
+      - name: docker tage
+        run: docker tag nginx:latest 585768173504.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+        
+    
+
+
 
       
       
