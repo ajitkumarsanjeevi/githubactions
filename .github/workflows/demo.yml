@@ -60,6 +60,9 @@ jobs:
       - name: deploy
         run: kubectl apply -f nginx-deployment-service.yaml
 
+      - name: svc
+        run: kubectl get svc
+
         
     
 
