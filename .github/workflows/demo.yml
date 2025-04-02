@@ -41,6 +41,10 @@ jobs:
 
       - name: docker tage
         run: docker tag nginx:latest 585768173504.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+
+      - name: push to ecr
+        run: docker push 585768173504.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+
         
     
 
