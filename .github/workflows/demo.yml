@@ -55,7 +55,7 @@ jobs:
         run: docker push 585768173504.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
 
       - name: update kubeconfig
-        run: aws eks update-kubeconfig --name my-eks-cluster --name --region us-east-1
+        run: aws eks update-kubeconfig --name my-eks-cluster  --region us-east-1
 
       - name: deploy
         run: kubectl apply -f nginx-deployment-service.yaml
