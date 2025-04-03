@@ -52,7 +52,13 @@ jobs:
         run: docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
 
       - name: install trviy
-        run: trivy --version
+        run: |
+            sudo apt-get install wget apt-transport-https gnupg lsb-release
+            wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+            echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+            sudo apt-get update
+            sudo apt-get install trivy
+
 
       - name: scan
         run: trivy image  585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
