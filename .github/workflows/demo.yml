@@ -51,6 +51,9 @@ jobs:
       - name: push to ecr
         run: docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
 
+      - name: scan
+        run: trivy image  585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
+
       - name: update kubeconfig
         run: aws eks update-kubeconfig --name ${{ env.clustername }}    --region ${{ env.Region }} 
 
