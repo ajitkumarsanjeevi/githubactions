@@ -6,6 +6,8 @@ on:
       - main
 env:
  Region: us-east-1
+ name: nginx
+ clustername: my-eks-cluster
 
 jobs:  
   terraform:
@@ -37,20 +39,20 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: create ecr repo
-        run: aws ecr create-repository --repository-name nginx --region ${{ env.Region }} 
+        run: aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }} 
         continue-on-error: true  
 
       - name: build docker image
         run: docker build -t nginx .
 
       - name: docker tage
-        run: docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/nginx:latest
+        run: docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
 
       - name: push to ecr
-        run: docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/nginx:latest
+        run: docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
 
       - name: update kubeconfig
-        run: aws eks update-kubeconfig --name my-eks-cluster  --region ${{ env.Region }} 
+        run: aws eks update-kubeconfig --name ${{ env.clustername }}    --region ${{ env.Region }} 
 
       
 
