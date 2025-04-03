@@ -7,7 +7,7 @@ on:
 env:
  Region: us-east-1
  name: nginx
- clustername: my-eks-cluster
+ clustername: my-eks-cluster 
 
 jobs:  
   terraform:
