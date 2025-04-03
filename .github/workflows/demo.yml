@@ -44,10 +44,10 @@ jobs:
         run: docker build -t nginx .
 
       - name: docker tage
-        run: docker tag nginx:latest 585768173504.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+        run: docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }} .amazonaws.com/nginx:latest
 
       - name: push to ecr
-        run: docker push 585768173504.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+        run: docker push 585768173504.dkr.ecr.${{ env.Region }} .amazonaws.com/nginx:latest
 
       - name: update kubeconfig
         run: aws eks update-kubeconfig --name my-eks-cluster  --region ${{ env.Region }} 
