@@ -52,7 +52,7 @@ jobs:
         run: docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
 
       - name: install trviy
-        run: snap install trivy -y
+        run: trivy --version
 
       - name: scan
         run: trivy image  585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
