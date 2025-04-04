@@ -30,6 +30,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region:  ${{ env.Region }} 
 
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
       - name: repo check
         run: |
 
@@ -48,19 +51,7 @@ jobs:
            fi
 
            done    
-      
-          
-     
-      
 
-      
-
-      - name: Log in to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: create ecr repo
-        run: aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }} 
-        continue-on-error: true  
 
       - name: build docker image
         run: docker build -t nginx .
