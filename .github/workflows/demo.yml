@@ -34,29 +34,19 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: repo check
-        run: |
+        run: aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }}
+        continue-on-error: true
 
-           repos=($(aws ecr describe-repositories --region "$Region" --query "repositories[*].repositoryName" --output text))
-           for repo in "${repos[@]}"; do
- 
-           if [ "$repo" == "nginx" ]; then
-       
-           echo "nginx repo already exists"
+      - name: build
+        run:  docker build -t nginx .
 
-           break
-           else
-
-           aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }} 
+      - name: tag
+        run: docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
            
-           docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
-           
-           docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
+      - name: push    
+        run:  docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
 
-           docker build -t nginx .
-   
-           fi
-
-           done    
+            
 
 
       
