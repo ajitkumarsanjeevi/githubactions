@@ -1,6 +1,6 @@
 name: Remote Deployment
 
-on 
+on: 
   push:     
     branches: 
       - main
@@ -30,14 +30,25 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region:  ${{ env.Region }} 
 
-      - name: init
-        run: terraform init
+      - name: repo check
+        run: |
 
-      - name: plan
-        run: terraform plan
+           repos=($(aws ecr describe-repositories --region "$Region" --query "repositories[*].repositoryName" --output text))
+           for repose in "${repos[@]}; do
+ 
+           if [ "$repo" == "nginx" ]; then
+       
+           echo "nginx repo already exists"
 
-      - name: apply
-        run: terraform apply -auto-approve
+           break
+           else
+
+           aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }}  
+   
+           fi
+
+           done    
+      
           
      
       
