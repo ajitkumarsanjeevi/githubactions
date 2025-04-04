@@ -5,7 +5,7 @@ on:
     branches: 
       - main
 env:
- Region: us-east-1
+ Region: us-east-1 
  name: nginx
  clustername: my-eks-cluster 
 
