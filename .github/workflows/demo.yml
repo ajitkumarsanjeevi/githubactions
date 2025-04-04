@@ -32,6 +32,7 @@ jobs:
 
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
+        continue-on-error: true
 
       - name: repo check
         run: aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }} 
