@@ -46,21 +46,21 @@ jobs:
            break
            else
 
-           aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }}  
+           aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }} 
+           
+           docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
+           
+           docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
+
+           docker build -t nginx .
    
            fi
 
            done    
 
 
-      - name: build docker image
-        run: docker build -t nginx .
+      
 
-      - name: docker tage
-        run: docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
-
-      - name: push to ecr
-        run: docker push 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
 
 
       - name: update kubeconfig
