@@ -34,13 +34,11 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: repo check
-        run: |
-         set +x
-         aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }} 
+        run: aws ecr create-repository --repository-name ${{ env.name }}  --region ${{ env.Region }} 
         
 
       - name: build
-        run:  docker build -t nginx .
+        run:  docker build -t {{ env.name }}.
 
       - name: tag
         run: docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
