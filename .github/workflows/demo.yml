@@ -34,7 +34,7 @@ jobs:
         run: |
 
            repos=($(aws ecr describe-repositories --region "$Region" --query "repositories[*].repositoryName" --output text))
-           for repose in "${repos[@]}; do
+           for repo in "${repos[@]}; do
  
            if [ "$repo" == "nginx" ]; then
        
