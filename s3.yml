@@ -1,7 +1,13 @@
 ---
-- name: Install and configure NGINX
+- name: List all S3 Buckets
   hosts: localhost
-  become: true       
+  gather_facts: no
+  vars_files:
+    - vars.yml  # Include the vars.yml file
   tasks:
-    - name: login to ecr
-      command: aws s3 ls
+    - name: List all S3 Buckets
+      community.aws.s3_bucket_facts:
+        region: "{{ aws-region }}"
+        aws-access-key: "{{ aws-access-key }}"
+        aws_secret_key: "{{ aws-secret-key }}"
+      register: s3_buckets
