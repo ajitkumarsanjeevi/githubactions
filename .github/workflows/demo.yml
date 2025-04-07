@@ -57,7 +57,7 @@ jobs:
 
       - name: s3
         run: |
-         aws configure
+         
          ansible-playbook  s3.yml
        
 
