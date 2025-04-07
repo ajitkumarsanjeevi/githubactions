@@ -46,6 +46,7 @@ jobs:
             
       - name: Set AWS Credentials
         run: |
+          aws configure
           echo "aws-access-key-id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
           echo "aws-secret-access-key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV 
           echo "aws-region=ap-south-1" >> $GITHUB_ENV 
