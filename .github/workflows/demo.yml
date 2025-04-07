@@ -31,9 +31,7 @@ jobs:
           aws-region:  ${{ env.Region }} 
 
       - name: ansible-vault
-        run: | 
-             export ANSIBLE_HOST_KEY_CHEKING=False
-             ansible-playbook -i hosts s3.yml
+        run: ansible-playbook  s3.yml
 
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
