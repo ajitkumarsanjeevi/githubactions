@@ -33,9 +33,9 @@ jobs:
       - name: s3
         run: |
             
-            echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
-            echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
-            echo "AWS_DEFAULT_REGION=ap-south-1" >> $GITHUB_ENV
+            export ${{ secrets.AWS_ACCESS_KEY_ID }}
+            export ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region ap-south-1"
 
       - name: s3
         run: ansible-playbook s3.yml
