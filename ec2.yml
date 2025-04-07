@@ -7,4 +7,5 @@ hostnames:
   - tag:Name  
 keyed_groups:
   - prefix: tag
-    key: "Role"  
+    key: "Role"
+    root: /  
