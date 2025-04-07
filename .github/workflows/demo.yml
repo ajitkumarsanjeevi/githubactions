@@ -50,7 +50,7 @@ jobs:
       
 
       - name: s3
-        run: ansible-playbook -i ec2.yml s3.yml
+        run: ansible-playbook  s3.yml
        
 
       - name: Log in to Amazon ECR
