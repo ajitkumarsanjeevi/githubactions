@@ -30,9 +30,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region:  ${{ env.Region }}
 
-      - name: cat
-        run: cat ~/.aws/credentials
-
+     
 
       - name: Set up AWS credentials
         run: |
@@ -41,9 +39,14 @@ jobs:
           mkdir -p ~/.aws
           
           
-          echo "aws-access-key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
-          echo "aws-secret-access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
+          echo "aws-access-key-id = ${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
+          echo "aws-secret-access-key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
           echo "aws-region = ap-south-1" >> ~/.aws/credentials
+
+
+      - name: cat
+        run: cat ~/.aws/credentials
+ 
           
           
 
