@@ -1,0 +1,7 @@
+---
+- name: Install and configure NGINX
+  hosts: localhost
+  become: true       
+  tasks:
+    - name: login to ecr
+      command: aws s3 ls
