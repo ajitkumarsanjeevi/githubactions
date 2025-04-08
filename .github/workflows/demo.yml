@@ -40,7 +40,7 @@ jobs:
         
 
       - name: build
-        run:  docker build -t {{ env.name }} .
+        run:  docker build -t ${{ env.name }} .
 
       - name: tag
         run: docker tag nginx:latest 585768173504.dkr.ecr.${{ env.Region }}.amazonaws.com/${{ env.name }}:latest
