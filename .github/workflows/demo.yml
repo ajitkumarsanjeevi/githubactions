@@ -37,7 +37,7 @@ jobs:
          run: terraform plan
 
        - name: apply
-         run: terraform -auto-approve
+         run: terraform apply -auto-approve
 
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
