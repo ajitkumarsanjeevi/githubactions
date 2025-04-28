@@ -20,7 +20,7 @@ spec:
               - key: topology.kubernetes.io/zone
                 operator: In
                 values:
-                - ap-south-1a
+                - us-east-1a
       containers:
       - name: nginx
         image: 585768173504.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
