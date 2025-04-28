@@ -30,14 +30,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region:  ${{ env.Region }}
 
-       - name: init
-         run: terraform init
+      - name: init
+        run: terraform init
 
-       - name: plan
-         run: terraform plan
+      - name: plan
+        run: terraform plan
 
-       - name: apply
-         run: terraform apply -auto-approve
+      - name: apply
+        run: terraform apply -auto-approve
 
       - name: Log in to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
